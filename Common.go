@@ -9,10 +9,10 @@ import (
 	"time"
 )
 
-const(
+const (
 	LevelDebug = uint32(0)
-	LevelInfo = uint32(1)
-	LevelWarn = uint32(2)
+	LevelInfo  = uint32(1)
+	LevelWarn  = uint32(2)
 	LevelError = uint32(3)
 )
 
@@ -24,41 +24,43 @@ var LevelHeaderError = "[Error]"
 var Prefix = ""
 var Suffix = ""
 
+var IsDebug = false
+
 var Path string
 
 var Level uint32
 var fileLock *sync.RWMutex
 
-func init(){
+func init() {
 	fileLock = new(sync.RWMutex)
 	Level = LevelWarn
 }
 
-func Debug(msg string){
+func Debug(msg string) {
 	if Level <= LevelDebug {
 		log(msg)
 	}
 }
 
-func Info(msg string){
+func Info(msg string) {
 	if Level <= LevelInfo {
 		log(msg)
 	}
 }
 
-func Warn(msg string){
+func Warn(msg string) {
 	if Level <= LevelWarn {
 		log(msg)
 	}
 }
 
-func Error(msg string){
+func Error(msg string) {
 	if Level <= LevelError {
 		log(msg)
 	}
 }
 
-func getLogHeader()string{
+func getLogHeader() string {
 	switch Level {
 	case LevelDebug:
 		return LevelHeaderDebug
@@ -73,8 +75,12 @@ func getLogHeader()string{
 	}
 }
 
-func log(msg string){
+func log(msg string) {
 	msg = getLogHeader() + "" + goToolCommon.GetDateTimeStr(time.Now()) + " " + msg + goToolCommon.GetWrapStr()
+	if IsDebug {
+		fmt.Println(msg)
+		return
+	}
 	path := getLogPath()
 	err := goToolCommon.CheckAndCreateFolder(path)
 	if err != nil {
@@ -84,7 +90,7 @@ func log(msg string){
 
 	fileLock.Lock()
 	defer fileLock.Unlock()
-	f, err := os.OpenFile(path + fileName, os.O_APPEND|os.O_CREATE|os.O_RDWR, 0666)
+	f, err := os.OpenFile(path+fileName, os.O_APPEND|os.O_CREATE|os.O_RDWR, 0666)
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -98,20 +104,20 @@ func log(msg string){
 	}
 }
 
-func getLogPath()string{
-	if strings.Trim(Path," ") == "" {
-		path,err := goToolCommon.GetCurrPath()
+func getLogPath() string {
+	if strings.Trim(Path, " ") == "" {
+		path, err := goToolCommon.GetCurrPath()
 		if err != nil {
 			return ""
 		}
 		return path + "\\" + "log" + "\\"
 	}
-	if !strings.HasSuffix(Path,"\\"){
+	if !strings.HasSuffix(Path, "\\") {
 		Path = Path + "\\"
 	}
 	return Path
 }
 
-func getLogFileName()string{
+func getLogFileName() string {
 	return Prefix + goToolCommon.GetDateStr(time.Now()) + Suffix + ".log"
 }
