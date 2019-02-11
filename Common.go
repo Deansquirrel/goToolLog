@@ -78,7 +78,7 @@ func getLogHeader() string {
 func log(msg string) {
 	msg = getLogHeader() + "" + goToolCommon.GetDateTimeStr(time.Now()) + " " + msg + goToolCommon.GetWrapStr()
 	if IsDebug {
-		fmt.Println(msg)
+		fmt.Print(msg)
 		return
 	}
 	path := getLogPath()
