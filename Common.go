@@ -24,7 +24,7 @@ var LevelHeaderError = "[Error]"
 var Prefix = ""
 var Suffix = ""
 
-var IsDebug = false
+var StdOut = false
 
 var Path string
 
@@ -77,7 +77,7 @@ func getLogHeader() string {
 
 func log(msg string) {
 	msg = getLogHeader() + "" + goToolCommon.GetDateTimeStr(time.Now()) + " " + msg + goToolCommon.GetWrapStr()
-	if IsDebug {
+	if StdOut {
 		fmt.Print(msg)
 		return
 	}
