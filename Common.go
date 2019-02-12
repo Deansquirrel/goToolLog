@@ -80,7 +80,6 @@ func log(msg string) {
 	msg = getLogHeader() + "" + goToolCommon.GetDateTimeStr(time.Now()) + " " + msg + goToolCommon.GetWrapStr()
 	if StdOut {
 		fmt.Print(msg)
-		return
 	}
 	path := getLogPath()
 	err := goToolCommon.CheckAndCreateFolder(path)
