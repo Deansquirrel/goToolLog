@@ -24,7 +24,7 @@ var LevelHeaderError = "[Error]"
 var Prefix = ""
 var Suffix = ""
 
-var StdOut = false
+var StdOut bool
 
 var Path string
 
@@ -34,6 +34,7 @@ var fileLock *sync.RWMutex
 func init() {
 	fileLock = new(sync.RWMutex)
 	Level = LevelWarn
+	StdOut = false
 }
 
 func Debug(msg string) {
