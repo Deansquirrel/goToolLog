@@ -16,10 +16,12 @@ const (
 	LevelError = uint32(3)
 )
 
-var LevelHeaderDebug = "[DEBUG]"
-var LevelHeaderInfo = "[INFO]"
-var LevelHeaderWarn = "[WARN]"
-var LevelHeaderError = "[Error]"
+const (
+	LevelHeaderDebug = "[DEBUG]"
+	LevelHeaderInfo  = "[INFO]"
+	LevelHeaderWarn  = "[WARN]"
+	LevelHeaderError = "[Error]"
+)
 
 var Prefix = ""
 var Suffix = ""
@@ -39,45 +41,30 @@ func init() {
 
 func Debug(msg string) {
 	if Level <= LevelDebug {
-		log(msg)
+		log(msg, LevelHeaderDebug)
 	}
 }
 
 func Info(msg string) {
 	if Level <= LevelInfo {
-		log(msg)
+		log(msg, LevelHeaderInfo)
 	}
 }
 
 func Warn(msg string) {
 	if Level <= LevelWarn {
-		log(msg)
+		log(msg, LevelHeaderWarn)
 	}
 }
 
 func Error(msg string) {
 	if Level <= LevelError {
-		log(msg)
+		log(msg, LevelHeaderError)
 	}
 }
 
-func getLogHeader() string {
-	switch Level {
-	case LevelDebug:
-		return LevelHeaderDebug
-	case LevelInfo:
-		return LevelHeaderInfo
-	case LevelWarn:
-		return LevelHeaderWarn
-	case LevelError:
-		return LevelHeaderError
-	default:
-		return ""
-	}
-}
-
-func log(msg string) {
-	msg = getLogHeader() + "" + goToolCommon.GetDateTimeStr(time.Now()) + " " + msg + goToolCommon.GetWrapStr()
+func log(msg string, header string) {
+	msg = header + "" + goToolCommon.GetDateTimeStr(time.Now()) + " " + msg + goToolCommon.GetWrapStr()
 	if StdOut {
 		fmt.Print(msg)
 	}
