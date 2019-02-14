@@ -41,13 +41,13 @@ func init() {
 
 func Debug(msg string) {
 	if Level <= LevelDebug {
-		log(msg, LevelHeaderDebug)
+		go log(msg, LevelHeaderDebug)
 	}
 }
 
 func Info(msg string) {
 	if Level <= LevelInfo {
-		log(msg, LevelHeaderInfo)
+		go log(msg, LevelHeaderInfo)
 	}
 }
 
