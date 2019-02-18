@@ -47,7 +47,7 @@ func Debug(msg string) {
 
 func Info(msg string) {
 	if Level <= LevelInfo {
-		go log(msg, LevelHeaderInfo)
+		log(msg, LevelHeaderInfo)
 	}
 }
 
