@@ -41,7 +41,7 @@ func init() {
 
 func Debug(msg string) {
 	if Level <= LevelDebug {
-		go log(msg, LevelHeaderDebug)
+		log(msg, LevelHeaderDebug)
 	}
 }
 
