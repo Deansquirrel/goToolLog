@@ -17,10 +17,10 @@ const (
 )
 
 const (
-	LevelHeaderDebug = "[DEBUG]"
+	LevelHeaderDebug = "[DEBG]"
 	LevelHeaderInfo  = "[INFO]"
 	LevelHeaderWarn  = "[WARN]"
-	LevelHeaderError = "[Error]"
+	LevelHeaderError = "[Erro]"
 )
 
 var Prefix = ""
