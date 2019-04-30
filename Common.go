@@ -97,10 +97,10 @@ func getLogPath() string {
 		if err != nil {
 			return ""
 		}
-		return path + "\\" + "log" + "\\"
+		return path + goToolCommon.GetFolderSplitStr() + "log" + goToolCommon.GetFolderSplitStr()
 	}
-	if !strings.HasSuffix(Path, "\\") {
-		Path = Path + "\\"
+	if !strings.HasSuffix(Path, goToolCommon.GetFolderSplitStr()) {
+		Path = Path + goToolCommon.GetFolderSplitStr()
 	}
 	return Path
 }
