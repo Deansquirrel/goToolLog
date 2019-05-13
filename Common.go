@@ -17,7 +17,7 @@ const (
 )
 
 const (
-	LevelHeaderDebug = "[DEBG]"
+	LevelHeaderDebug = "[DBUG]"
 	LevelHeaderInfo  = "[INFO]"
 	LevelHeaderWarn  = "[WARN]"
 	LevelHeaderError = "[Erro]"
