@@ -64,7 +64,7 @@ func Error(msg string) {
 }
 
 func log(msg string, header string) {
-	msg = header + "" + goToolCommon.GetDateTimeStr(time.Now()) + " " + msg + goToolCommon.GetWrapStr()
+	msg = header + " " + goToolCommon.GetDateTimeStr(time.Now()) + " " + msg + goToolCommon.GetWrapStr()
 	if StdOut {
 		fmt.Print(msg)
 	}
